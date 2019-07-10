@@ -1,13 +1,17 @@
 import React from 'react';
-import Recipe from './Recipe'
+import RecipeList from './RecipeList'
+import Nav from './Nav'
 import './RecipeApp.css';
 
-function RecipeApp() {
-  return (
-    <div className="App">
-      <Recipe title='pasta' ingredients={['flower','water']} />
-    </div>
-  );
+class RecipeApp extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <Nav />
+        <RecipeList />
+      </div>
+    )
+  }
 }
 
 export default RecipeApp;
