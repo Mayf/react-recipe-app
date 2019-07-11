@@ -1,0 +1,20 @@
+.recipe-form {
+    border: solid 3px #484848;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    display: flex;
+    color: #777;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.recipe-form-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
