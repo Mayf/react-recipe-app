@@ -127,7 +127,7 @@ class RecipeInput extends React.Component {
                     <button 
                         type='submit'
                         style={{alignSelf: 'flex-end', marginRight: 0}}
-                        className='buttons'
+						className='buttons'
                     >
                         Save
                     </button>

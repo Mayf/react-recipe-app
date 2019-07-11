@@ -9,7 +9,8 @@ class RecipeList extends React.Component {
         recipes: PropTypes.arrayOf(PropTypes.Object)
     }
     render() {
-        const recipeList = this.props.recipes.map((r,index) => <Recipe key = {r.id} {...r}/>)
+        const {onDelete} = this.props;
+        const recipeList = this.props.recipes.map((r,index) => <Recipe key = {r.id} {...r} onDelete={onDelete} />)
         return(
             <div className="recipe-list">
               {recipeList}
