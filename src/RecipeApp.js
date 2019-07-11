@@ -10,21 +10,21 @@ class RecipeApp extends React.Component {
     this.state = {
       recipes: [
         {
-          id: 1,
+          id: 0,
           title: 'Spaghetti',
           ingredients: ['flour', 'water'],
           instructions: 'MIX IT',
           img: 'spaghetti.jpg'
         },
         {
-          id: 2,
+          id: 1,
           title: 'Milkshake',
           ingredients: ['2 Scoops Ice cream', '8 ounces milk'],
           instructions: 'Combine ice cream and milk. Blend until creamy.',
           img: 'milkshake.jpg'
         },
         {
-          id: 3,
+          id: 2,
           title: 'Avocado Toast',
           ingredients: ['2 slices of bread', '1 avocado','pepper'],
           instructions: 'Toast bread. Slice avocado and spread on bread. Add salt, oil and pepper to taste.',
@@ -33,12 +33,25 @@ class RecipeApp extends React.Component {
       ],
       nextRecipeId: 3,
     }
+
+    this.handleSave = this.handleSave.bind(this);
   }
+
+  handleSave(recipe) {
+    this.setState((prevState, props) => {
+      const newRecipe = {...recipe, id: this.state.nextRecipeId};
+      return {
+        nextRecipeId: prevState.nextRecipeId + 1,
+        recipes: [...this.state.recipes, newRecipe]
+      }
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <Nav />
-        <RecipeInput />
+        <RecipeInput onSave={this.handleSave} />
         <RecipeList recipes={this.state.recipes} />
       </div>
     )

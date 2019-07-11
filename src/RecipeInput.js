@@ -3,7 +3,8 @@ import './RecipeInput.css'
 
 class RecipeInput extends React.Component {
     static defaultProps = {
-        onClose() {}
+        onClose() {},
+        onSave() {}
     }
 
     constructor(props) {
@@ -18,6 +19,7 @@ class RecipeInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleNewIngredient = this.handleNewIngredient.bind(this);
         this.handleChangeIng = this.handleChangeIng.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(event) {
@@ -35,6 +37,17 @@ class RecipeInput extends React.Component {
             i === index ? event.target.value : ing
         ));
         this.setState({ingredients});
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.props.onSave({...this.state});
+        this.setState({
+            title:'',
+            instructions: '',
+            ingredients: [''],
+            img:''
+        })
     }
 
     render() {
@@ -59,7 +72,7 @@ class RecipeInput extends React.Component {
         ))
         return (
             <div className="recipe-form-container">
-                <form className="recipe-form" onSubmit={this.handeSubmit}>
+                <form className="recipe-form" onSubmit={this.handleSubmit}>
                     <button
                         type="button"
                         className="close-button"
@@ -77,7 +90,7 @@ class RecipeInput extends React.Component {
                             value={title}
                             size={42}
                             autoComplete='off'
-                            onChange={this.handeSubmit} />
+                            onChange={this.handleChange} />
                     </div>
                     <label htmlFor='recipe-instructions-input' style={{marginTop: '5px'}}>Instructions</label>
                     <textarea
@@ -109,7 +122,7 @@ class RecipeInput extends React.Component {
                             value={img}
                             size={36}
                             autoComplete='off'
-                            onChange={this.handeSubmit} />
+                            onChange={this.handleChange} />
                     </div>
                     <button 
                         type='submit'
